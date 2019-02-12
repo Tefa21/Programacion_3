@@ -13,13 +13,14 @@ public class Planilla extends javax.swing.JFrame {
      * VARIABLES
      */
     
-    String[] Columnas = {"Departamento", "Nombre Empleado", "Sueldo Base", "Deducciones", "Recepciones", "Sueldo Líquido"};   
+    String[] Columnas = {"Departamento", "Nombre Empleado", "Sueldo Base", "Deducciones", "ISR" , "Recepciones", "Sueldo Líquido"};   
     String Nombre[]= new String[10];
     String Depa[]= new String[10];
 
     //FORMATO DECIMAL Y VARIABLES DE PLANILLA
     DecimalFormat Decimales = new DecimalFormat("####.##");
     double DblSueldoBase, DblDeducciones, DblPercepciones, DblSueldoLiquido;
+    double ISR;
                 
     public Planilla() {
         
@@ -40,23 +41,23 @@ public class Planilla extends javax.swing.JFrame {
 
         TablePlan1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Departamento", "Nombre Empleado", "Sueldo Base", "Total Deducciones", "Total Percepciones", "Sueldo Líquido"
+                "Departamento", "Nombre Empleado", "Sueldo Base", "ISR", "Total Deducciones", "Total Percepciones", "Sueldo Líquido"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -71,6 +72,7 @@ public class Planilla extends javax.swing.JFrame {
             TablePlan1.getColumnModel().getColumn(3).setResizable(false);
             TablePlan1.getColumnModel().getColumn(4).setResizable(false);
             TablePlan1.getColumnModel().getColumn(5).setResizable(false);
+            TablePlan1.getColumnModel().getColumn(6).setResizable(false);
         }
 
         BtnPlanilla.setText("INGRESAR PLANILLA");
@@ -89,7 +91,7 @@ public class Planilla extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BtnPlanilla)
@@ -105,7 +107,7 @@ public class Planilla extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(BtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                        .addComponent(BtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BtnPlanilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -164,7 +166,7 @@ public class Planilla extends javax.swing.JFrame {
         //INGRESO DE LOS DATOS
         for (int i = 0; i < 10; i++) {
             
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 7; j++) {
                 //CONDICIONES SEGGUN LA POSICION
                 if (j==0) {
                    Depa[i]=JOptionPane.showInputDialog("Ingrese El Departamento");
@@ -175,18 +177,31 @@ public class Planilla extends javax.swing.JFrame {
                    TablePlan1.setValueAt(Nombre[i], i,j); 
                 }
                 if (j==2) {
-                   DblSueldoBase = 3000 +(double)(Math.random()*5000);
-                   TablePlan1.setValueAt(Decimales.format(DblSueldoBase), i,j); 
+                   ISR=0;
+                   DblSueldoBase = 2600 +(double)(Math.random()*100000);
+                   TablePlan1.setValueAt(Decimales.format(DblSueldoBase), i,j);
+                   if (DblSueldoBase<=5000) {
+                        ISR=DblSueldoBase*0.03;
+                    }else if (DblSueldoBase<=10000) {
+                        ISR=DblSueldoBase*0.05;
+                    }else{
+                        ISR=DblSueldoBase*0.1;
+                    }
                 }
                 if (j==3) {
-                   DblDeducciones = 300 +(double)(Math.random()*500);
-                   TablePlan1.setValueAt(Decimales.format(DblDeducciones), i,j); 
+                   DblDeducciones = (300 +(double)(Math.random()*400))+ISR;
+                   TablePlan1.setValueAt(Decimales.format(DblDeducciones), i,j);
+                   
                 }
                 if (j==4) {
+                   TablePlan1.setValueAt(Decimales.format(ISR), i,j);
+                   
+                }
+                if (j==5) {
                    DblPercepciones = 300 +(double)(Math.random()*500);
                    TablePlan1.setValueAt(Decimales.format(DblPercepciones), i,j); 
                 }
-                if (j==5) {
+                if (j==6) {
                    DblSueldoLiquido = DblSueldoBase+DblPercepciones-DblDeducciones;
                    TablePlan1.setValueAt(Decimales.format(DblSueldoLiquido), i,j); 
                 }
@@ -197,6 +212,17 @@ public class Planilla extends javax.swing.JFrame {
         
         
     }
+    
+   //* public double ISR(double Sueldo, double ISR){
+        //if (Sueldo<=5000) {
+           // ISR=Sueldo*0.03;
+       // }else if (Sueldo<=10000) {
+           // ISR=Sueldo*0.05;
+       // }else{
+           // ISR=Sueldo*0.1;
+       // }
+       // return ISR;
+    //}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnPlanilla;
