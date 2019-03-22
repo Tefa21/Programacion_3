@@ -125,7 +125,7 @@ public class EncabezadoNomina extends javax.swing.JFrame {
             }
             this.Tbl_Nomina.setModel(tabla);     
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "No Se Encuentra La Nomina");
+            JOptionPane.showMessageDialog(null, "Error En La Consulta");
         }
     }//GEN-LAST:event_BtnBusquedaActionPerformed
 
