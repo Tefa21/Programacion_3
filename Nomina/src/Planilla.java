@@ -6,9 +6,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 /*
- * 0901-17-17587
- * Raul Alexander Sandoval Estrada
- * Programación III
+ * PROYECTO BASE DE DATOS
+
 */
 
 
@@ -127,6 +126,7 @@ public class Planilla extends javax.swing.JFrame {
     }
     public Planilla() {
         initComponents();
+        this.setLocationRelativeTo(null);
         modeloTabla = new DefaultTableModel(matrizPlanilla, vectEncabezado);// Se dice que el objeto Model se trabajara como una matriz
         TAB_Planilla.setModel(modeloTabla);// Se ajusta el modelo de la tabla al especificado en Modelo
         modeloTotal = new DefaultTableModel(matrizTotal, vectTotalEncabezado);
@@ -153,15 +153,13 @@ public class Planilla extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TAB_PlanillaTotal = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         TAB_Planilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Departamento", "Salario Base", "ISR", "IGSS", "Deducciones", "Percepciones", "Sueldo Liquido"
@@ -224,6 +222,8 @@ public class Planilla extends javax.swing.JFrame {
 
         jLabel4.setText("Total de Salarios Segun Departamentos");
 
+        jButton1.setText("jButton1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -245,10 +245,14 @@ public class Planilla extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(RBT_igssNo)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(combx_Departamento, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(RBT_igssSi))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(RBT_igssSi)
+                                            .addComponent(RBT_igssNo))
+                                        .addGap(188, 188, 188)
+                                        .addComponent(jButton1)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,12 +279,17 @@ public class Planilla extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(combx_Departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addComponent(RBT_igssSi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(RBT_igssNo))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(RBT_igssSi)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(RBT_igssNo)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -354,6 +363,7 @@ public class Planilla extends javax.swing.JFrame {
     private javax.swing.JTextField TXT_InsNombre;
     private javax.swing.ButtonGroup btgrp_igss;
     private javax.swing.JComboBox<String> combx_Departamento;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
