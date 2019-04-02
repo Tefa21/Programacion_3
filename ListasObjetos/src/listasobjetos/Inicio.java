@@ -1,10 +1,12 @@
 package listasobjetos;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
- *
- * @author MPA
+ * Sthefany Johana Campos Hernández
+ * 0901-17-2452
  */
+
 public class Inicio extends javax.swing.JFrame {
     
     Nodo Primero;
@@ -149,6 +151,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnIngresarActionPerformed
 
     private void BtnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarActionPerformed
+        Clear();
         Listar();       
     }//GEN-LAST:event_BtnMostrarActionPerformed
 
@@ -218,10 +221,12 @@ public class Inicio extends javax.swing.JFrame {
     public String Listar(){
 		String Dato=" ";
                 String Data[] = new String[2];
+                int Contador = 0;
 		Nodo aux=Primero;
 		while (aux!=null){
 			Dato+="{" + aux.Info + "}";
-//                        Data[0]= String.valueOf(aux.);
+                        Contador = Contador + 1;
+                        Data[0]= String.valueOf(Contador);
                         Data[1]= String.valueOf(aux.Info);
                         tabla.addRow(Data);
 			aux=aux.Siguiente;
@@ -263,6 +268,12 @@ public class Inicio extends javax.swing.JFrame {
                             actual=actual.Siguiente;
                         }			
 		}
+    }
+    
+    private void Clear(){
+        while (tabla.getRowCount() > 0) {
+               tabla.removeRow(0);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
