@@ -169,7 +169,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBorrarPosicionActionPerformed
 
     private void BtnBorrarDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarDatoActionPerformed
+        
         Dato= Integer.parseInt(TxtDato.getText());
+        
         borrarDato(Dato);
     }//GEN-LAST:event_BtnBorrarDatoActionPerformed
 
@@ -218,20 +220,17 @@ public class Inicio extends javax.swing.JFrame {
 		Primero=Primero.Siguiente;
     }
     
-    public String Listar(){
-		String Dato=" ";
+    public void Listar(){
                 String Data[] = new String[2];
                 int Contador = 0;
 		Nodo aux=Primero;
 		while (aux!=null){
-			Dato+="{" + aux.Info + "}";
                         Contador = Contador + 1;
                         Data[0]= String.valueOf(Contador);
                         Data[1]= String.valueOf(aux.Info);
                         tabla.addRow(Data);
 			aux=aux.Siguiente;
 		}
-		return(Dato);
     }
     
     public void borrarUltimo(){
