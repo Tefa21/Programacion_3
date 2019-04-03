@@ -8,15 +8,16 @@ import javax.swing.table.DefaultTableModel;
  */
 
 public class Inicio extends javax.swing.JFrame {
-    Nodo cabeza=null;
-    int longitud=0;
-    DefaultTableModel tabla = new DefaultTableModel();
+    
+    Nodo cabeza=null; //Se Declara Una variable Nodo iniciandola en Null
+    int longitud=0; //Variable Integer para la longitud del nodo
+    DefaultTableModel tabla = new DefaultTableModel(); //Declarar el modelo de la Tabla
     
     public Inicio() {
         initComponents();
-        Tbl_Nodo.setModel(tabla);
-        this.setLocationRelativeTo(null);
-        tabla.addColumn("No. Nodo");
+        Tbl_Nodo.setModel(tabla); //Se agrega el modelo a la JTable
+        this.setLocationRelativeTo(null); //Posición del JFrame en el Centro de la pantalla
+        tabla.addColumn("No. Nodo"); //Declaramos Las columnas de La Tabla
         tabla.addColumn("Título");
         tabla.addColumn("Autor");
         tabla.addColumn("ISBN");
@@ -197,48 +198,46 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnIngresoPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresoPrimeroActionPerformed
-        String StrTitulo, StrAutor, StrISBN;
-        StrTitulo = TxtTitulo.getText();
+        String StrTitulo, StrAutor, StrISBN; //Declaración de variables String para los campos del Libro
+        StrTitulo = TxtTitulo.getText(); //Obtenemos el valor del TextField y se lo asignamos a la variable String
         StrAutor = TxtAutor.getText();
         StrISBN = TxtISBN.getText();        
-        Libro Nuevo = new Libro(StrTitulo, StrAutor, StrISBN);
-        
-        insertarPrincipio(Nuevo);
+        Libro Nuevo = new Libro(StrTitulo, StrAutor, StrISBN); //Agregamos los String a la Estructura Libro       
+        insertarPrincipio(Nuevo); //Método InsertarPrincipio Mandamos la Variabe tipo Libro
     }//GEN-LAST:event_BtnIngresoPrimeroActionPerformed
 
     private void BtnIngresoFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresoFinalActionPerformed
-        String StrTitulo, StrAutor, StrISBN;
-        StrTitulo = TxtTitulo.getText();
+        String StrTitulo, StrAutor, StrISBN; //Declaración de variables String para los campos del Libro
+        StrTitulo = TxtTitulo.getText(); //Obtenemos el valor del TextField y se lo asignamos a la variable String
         StrAutor = TxtAutor.getText();
         StrISBN = TxtISBN.getText();        
-        Libro Nuevo = new Libro(StrTitulo, StrAutor, StrISBN);
-        
-        insertarFinal(Nuevo);
+        Libro Nuevo = new Libro(StrTitulo, StrAutor, StrISBN); //Agregamos los String a la Estructura Libro               
+        insertarFinal(Nuevo); //Método InsertarFinal Mandamos la Variabe tipo Libro
     }//GEN-LAST:event_BtnIngresoFinalActionPerformed
 
     private void BtnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarActionPerformed
-            ClearTabla();
-            Listar();        
+            ClearTabla(); //Método ClearTabla donde se Limpia la tabla cada que se vaya a mostrar
+            Listar(); //Método InsertarPrincipio Mandamos la Variabe tipo Libro
     }//GEN-LAST:event_BtnMostrarActionPerformed
 
     private void BtnBorrarPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarPrimeroActionPerformed
-        eliminaPrincipio();
+        eliminaPrincipio(); //Método EliminarPrincipio
     }//GEN-LAST:event_BtnBorrarPrimeroActionPerformed
 
     private void BtnBorrarUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBorrarUltimoActionPerformed
-        eliminarUltimo();
+        eliminarUltimo(); //Método EliminarUltimo
     }//GEN-LAST:event_BtnBorrarUltimoActionPerformed
 
     private void BtnIngresoDespuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIngresoDespuesActionPerformed
-        String StrTitulo, StrAutor, StrISBN, StrPosicion;
-        int IntPosicion;
-        StrTitulo = TxtTitulo.getText();
+        String StrTitulo, StrAutor, StrISBN, StrPosicion;//Declaración de variables String para los campos del Libro y El String Posición
+        int IntPosicion; //Declaración de variables Int para la posicion
+        StrTitulo = TxtTitulo.getText(); //Obtenemos el valor del TextField y se lo asignamos a la variable String
         StrAutor = TxtAutor.getText();
         StrISBN = TxtISBN.getText();
         StrPosicion = TxtPosicion.getText();
-        Libro Nuevo = new Libro(StrTitulo, StrAutor, StrISBN);
-        boolean EsNumero = EsNumero(StrPosicion);
-        if (EsNumero==true) {
+        Libro Nuevo = new Libro(StrTitulo, StrAutor, StrISBN); //Agregamos los String a la Estructura Libro 
+        boolean EsNumero = EsNumero(StrPosicion); //Declaramos una variable Booleana y la igualamos al Metodo EsNumero 
+        if (EsNumero==true) { //
             IntPosicion = Integer.parseInt(StrPosicion);
             insertarDespues(IntPosicion, Nuevo);
         }else{
@@ -294,9 +293,9 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
     public void insertarPrincipio(Libro libro) {
-		Nodo nodo=new Nodo(libro);
-		nodo.siguiente=cabeza;
-		cabeza=nodo;
+		Nodo Nuevo =new Nodo(libro);
+		Nuevo.siguiente=cabeza;
+		cabeza=Nuevo;
 		longitud++;	
 	}
     public void insertarFinal(Libro libro) {
@@ -313,9 +312,9 @@ public class Inicio extends javax.swing.JFrame {
 		longitud++;
 	}
     public void insertarDespues(int n, Libro libro) {
-		Nodo nodo=new Nodo(libro);
+		Nodo Nuevo =new Nodo(libro);
 		if (cabeza==null) {
-			cabeza=nodo;
+			cabeza=Nuevo;
 		} else {
 			Nodo puntero=cabeza;
 			int contador=0;
@@ -323,8 +322,8 @@ public class Inicio extends javax.swing.JFrame {
 				puntero=puntero.siguiente;
 				contador++;
 			}
-			nodo.siguiente=puntero.siguiente;
-			puntero.siguiente=nodo;
+			Nuevo.siguiente=puntero.siguiente;
+			puntero.siguiente=Nuevo;
 		}
 		longitud++;
 	}
@@ -372,7 +371,7 @@ public class Inicio extends javax.swing.JFrame {
                     longitud--;
                 } else if (n<longitud) {
                     Nodo puntero=cabeza;
-                    int contador=0;
+                    int contador=1;
                     while (contador<(n-1)){
                         puntero=puntero.siguiente;
                         contador++;
@@ -389,13 +388,13 @@ public class Inicio extends javax.swing.JFrame {
                 int Contador = 0;
 		Nodo aux=cabeza;
 		while (aux!=null){
-                        Contador = Contador + 1;
                         Data[0]= String.valueOf(Contador);
                         Data[1]= String.valueOf(aux.libro.titulo);
                         Data[2]= String.valueOf(aux.libro.autor);
                         Data[3]= String.valueOf(aux.libro.isbn);
                         tabla.addRow(Data);
 			aux=aux.siguiente;
+                        Contador = Contador + 1;
 		}
     }
     private void ClearTabla(){
