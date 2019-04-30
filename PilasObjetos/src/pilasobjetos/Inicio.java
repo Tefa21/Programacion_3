@@ -289,17 +289,14 @@ public class Inicio extends javax.swing.JFrame {
                 int Contador = 0;
 		Nodo aux=cabeza;
 		while (aux!=null){
-                        if (aux==null) {
                         Data[0]= String.valueOf(Contador);
                         Data[1]= String.valueOf(aux.libro.titulo);
                         Data[2]= String.valueOf(aux.libro.autor);
                         Data[3]= String.valueOf(aux.libro.isbn);
-                        tabla.addRow(Data);
-                    }
-                        
 			aux=aux.siguiente;
                         Contador = Contador + 1;
 		}
+                tabla.addRow(Data);
     }
     private void ClearTabla(){
         while (tabla.getRowCount() > 0) {
